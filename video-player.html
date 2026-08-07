@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="ULMFlix Legal Video Player" />
+
+    <title>Legal Video Player - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="nav scrolled" data-site-nav></nav>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="container" style="padding-top: 110px">
+      <section class="video-player-page">
+        <h1>Legal Video Player</h1>
+
+        <p class="notice">
+          Use only video URLs for content you own or are legally licensed to
+          distribute.
+        </p>
+
+        <!-- =========================
+                 VIDEO URL INPUT
+            ========================== -->
+
+        <div class="video-url-section" style="margin-top: 20px">
+          <label for="videoUrl" style="display: block; margin-bottom: 8px">
+            Video URL
+          </label>
+
+          <input
+            class="search"
+            id="videoUrl"
+            type="url"
+            autocomplete="off"
+            placeholder="Enter a legal MP4 video URL"
+          />
+
+          <button
+            class="btn btn-red"
+            id="loadVideo"
+            type="button"
+            style="margin-top: 12px"
+          >
+            Load Video
+          </button>
+
+          <div
+            id="videoStatus"
+            class="status"
+            role="status"
+            aria-live="polite"
+            style="display: none; margin-top: 10px"
+          ></div>
+        </div>
+
+        <!-- =========================
+                 PLAYER TOOLS
+            ========================== -->
+
+        <div
+          class="player-tools"
+          style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px"
+        >
+          <button class="btn btn-dark" id="skipIntro" type="button">
+            ⏩ Skip Intro
+          </button>
+
+          <button class="btn btn-dark" id="nextEpisode" type="button">
+            Next Episode →
+          </button>
+
+          <button class="btn btn-dark" id="offlineDownload" type="button">
+            ⬇ Download for Offline
+          </button>
+
+          <select
+            class="search"
+            id="quality"
+            aria-label="Video quality"
+            style="width: auto"
+          >
+            <option value="auto">Auto Quality</option>
+
+            <option value="1080">1080p</option>
+
+            <option value="720">720p</option>
+
+            <option value="480">480p</option>
+          </select>
+        </div>
+
+        <!-- =========================
+                 VIDEO PLAYER
+            ========================== -->
+
+        <div class="video" style="margin-top: 25px">
+          <video
+            id="legalVideo"
+            controls
+            playsinline
+            preload="metadata"
+            style="width: 100%; max-width: 100%"
+          ></video>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="js/navbar.js"></script>
+
+    <script src="js/player.js"></script>
+
+    <script src="js/player-plus.js"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "StreamFlix Pro",
+  "short_name": "StreamFlix",
+  "start_url": "/",
+  "display": "standalone",
+  "description": "Legal movie discovery, reviews and entertainment guides."
+}

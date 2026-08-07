@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://ulmflix.vercel.app/movies.html" />
+    <title>Movies - ULMFlix</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <nav class="nav scrolled" data-site-nav></nav>
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container" style="padding-top: 105px">
+      <div class="section-title"><h1>Movies</h1></div>
+      <div class="chips">
+        <button class="chip active" data-endpoint="/movie/popular">
+          Popular</button
+        ><button class="chip" data-endpoint="/movie/now_playing">
+          Now Playing</button
+        ><button class="chip" data-endpoint="/movie/upcoming">Upcoming</button
+        ><button class="chip" data-endpoint="/movie/top_rated">
+          Top Rated
+        </button>
+      </div>
+      <div class="grid" id="movieGrid"><div class="status">Loading…</div></div>
+      <div class="pagination">
+        <button class="btn btn-dark" id="prev">Previous</button
+        ><button class="btn btn-dark" id="next">Next</button>
+      </div>
+    </main>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/library.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/navbar.js"></script>
+    <script>
+      let page = 1,
+        endpoint = "/movie/popular";
+      async function loadMovies() {
+        const grid = document.getElementById("movieGrid");
+        grid.innerHTML = '<div class="status">Loading…</div>';
+        try {
+          let d = await window.SFCatalog?.published({ page, limit: 24 });
+          if (!d?.total_results) d = await SF.request(endpoint, { page });
+          SFComponents.render("movieGrid", d.results || []);
+          document.getElementById("prev").disabled = page <= 1;
+          document.getElementById("next").disabled =
+            page >= (d.total_pages || 1);
+        } catch (e) {
+          grid.innerHTML =
+            '<div class="status">' + SF.escape(e.message) + "</div>";
+        }
+      }
+      document.querySelectorAll("[data-endpoint]").forEach((b) =>
+        b.addEventListener("click", () => {
+          document
+            .querySelectorAll(".chip")
+            .forEach((x) => x.classList.remove("active"));
+          b.classList.add("active");
+          endpoint = b.dataset.endpoint;
+          page = 1;
+          loadMovies();
+        }),
+      );
+      document.getElementById("prev").onclick = () => {
+        if (page > 1) {
+          page--;
+          loadMovies();
+        }
+      };
+      document.getElementById("next").onclick = () => {
+        page++;
+        loadMovies();
+      };
+      loadMovies();
+    </script>
+      <script src="js/ads.js"></script>
+  <script src="js/analytics.js"></script></body>
+</html>

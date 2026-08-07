@@ -1,0 +1,2 @@
+ULMFlix Global Multi-User Income Platform v1.0
+Includes per-user profile personalization, secure Supabase RLS schema, local-first storage, cloud sync, and global income recommendations.

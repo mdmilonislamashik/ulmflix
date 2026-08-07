@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Profiles & Parental Controls • ULMFlix</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/features.css" />
+  </head>
+  <body>
+    <nav class="nav" data-site-nav></nav>
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="features-page">
+      <div class="container">
+        <section class="feature-hero">
+          <div>
+            <span class="eyebrow">YOUR ULMFLIX EXPERIENCE</span>
+            <h1>Profiles, controls & preferences</h1>
+            <p>
+              Personalize every profile, protect kids, and keep your watch
+              experience exactly how you like it.
+            </p>
+          </div>
+          <a class="btn btn-red" href="index.html">Back to Home</a>
+        </section>
+        <section class="profile-switcher panel-lite">
+          <div class="section-title">
+            <h2>Who's watching?</h2>
+            <button class="btn btn-dark" id="addProfile">+ Add Profile</button>
+          </div>
+          <div id="profileCards" class="profile-cards"></div>
+          <p class="hint">
+            Up to 5 profiles per account. Profile data is stored locally in this
+            demo.
+          </p>
+        </section>
+        <section class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-head">
+              <h2>🔐 Profile Lock PIN</h2>
+              <span class="pill">Security</span>
+            </div>
+            <p>Require a PIN before opening this profile.</p>
+            <div class="inline-form">
+              <input
+                id="pinInput"
+                maxlength="4"
+                inputmode="numeric"
+                placeholder="4-digit PIN"
+              /><button class="btn btn-red" id="savePin">Save PIN</button>
+            </div>
+            <small id="pinStatus" class="hint"></small>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-head">
+              <h2>👨‍👩‍👧 Parental Control</h2>
+              <span class="pill">Kids</span>
+            </div>
+            <label class="toggle-row"
+              ><span>Kids Profile</span
+              ><input id="kidsToggle" type="checkbox" /><i></i></label
+            ><label class="field-label">Maturity restriction</label
+            ><select id="maturity">
+              <option>All Ages</option>
+              <option>7+</option>
+              <option>13+</option>
+              <option>16+</option>
+              <option>18+</option></select
+            ><label class="toggle-row"
+              ><span>Autoplay next episode</span
+              ><input id="autoplay" type="checkbox" /><i></i></label
+            ><button class="btn btn-dark" id="saveControls">
+              Save Controls
+            </button>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-head">
+              <h2>🌐 Language & Audio</h2>
+              <span class="pill">Preferences</span>
+            </div>
+            <label class="field-label">Display language</label
+            ><select id="language">
+              <option>English</option>
+              <option>বাংলা</option>
+              <option>हिन्दी</option>
+              <option>Español</option></select
+            ><label class="field-label">Preferred audio</label
+            ><select id="audio">
+              <option>English</option>
+              <option>বাংলা</option>
+              <option>हिन्दी</option></select
+            ><label class="field-label">Subtitle</label
+            ><select id="subtitle">
+              <option>English</option>
+              <option>বাংলা</option>
+              <option>Hindi</option>
+              <option>Off</option></select
+            ><button class="btn btn-dark" id="savePrefs">
+              Save Preferences
+            </button>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-head">
+              <h2>🚫 Blocked Content</h2>
+              <span class="pill">Safety</span>
+            </div>
+            <p>Specific titles can be blocked for the active profile.</p>
+            <div id="blockedList" class="blocked-list"></div>
+            <button class="btn btn-dark" id="resetBlocked">
+              Clear Blocked Titles
+            </button>
+          </div>
+        </section>
+        <section class="feature-card full-card">
+          <div class="feature-card-head">
+            <h2>🕘 Viewing Activity</h2>
+            <button class="btn btn-dark" id="clearHistory">
+              Clear History
+            </button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      ULMFlix • Personal profiles & parental controls
+    </footer>
+    <script src="js/storage.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/features.js"></script>
+      <script src="js/ads.js"></script>
+  </body>
+</html>

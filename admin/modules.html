@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ULMFlix Admin • Management Hub</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <style>
+      .module-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .module-card {
+        background: #15171a;
+        border: 1px solid #292c32;
+        border-radius: 13px;
+        padding: 18px;
+        transition: 0.18s;
+      }
+      .module-card:hover {
+        transform: translateY(-2px);
+        border-color: #4b4f58;
+      }
+      .module-card b {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 6px;
+      }
+      .module-card span {
+        display: block;
+        color: #858b94;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      .module-card a {
+        display: inline-flex;
+        margin-top: 14px;
+        color: #ff5960;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      @media (max-width: 900px) {
+        .module-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .module-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-nav">
+      <button class="menu-btn" id="menuBtn">☰</button
+      ><a href="index.html" class="logo"><span>ULMFLIX</span> ADMIN</a>
+      <div class="nav-right">
+        <a href="../index.html" class="btn btn-dark">↗ View Website</a>
+      </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+      <div class="side-title">Overview</div>
+      <a class="side-link" href="index.html">▦ <span>Dashboard</span></a>
+      <div class="side-title">Content</div>
+      <a href="content.html" class="side-link">🧩 <span>Content System</span></a
+      ><a class="side-link" href="movies.html"
+        >🎬 <span>Movies Management</span></a
+      ><a class="side-link active" href="modules.html"
+        >◈ <span>All Modules</span></a
+      >
+      <div class="side-title">Management</div>
+      <a class="side-link" href="users.html">👥 <span>User Management</span></a
+      ><a class="side-link" href="settings.html">⚙ <span>Settings</span></a>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="admin-kicker">Management Suite</div>
+          <h1>Admin Modules</h1>
+          <p>
+            One control center for content, subscribers, payments, discovery and
+            parental safety.
+          </p>
+        </div>
+      </div>
+      <section class="panel">
+        <div class="module-grid" id="modules"></div>
+      </section>
+    </main>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+      const items = [
+        [
+          "🎬",
+          "Movies Management",
+          "Add, edit, delete, publish and schedule movies.",
+          "movies.html",
+        ],
+        [
+          "📺",
+          "Series Management",
+          "Series, seasons and episode organization.",
+          "modules.html#series",
+        ],
+        [
+          "▣",
+          "Season Management",
+          "Create seasons and connect episode groups.",
+          "modules.html#seasons",
+        ],
+        [
+          "▶",
+          "Episode Management",
+          "Episode metadata, video URLs, subtitles and next episode.",
+          "modules.html#episodes",
+        ],
+        [
+          "🏷",
+          "Genre Management",
+          "Create and organize genres and categories.",
+          "modules.html#genres",
+        ],
+        [
+          "👥",
+          "User Management",
+          "Accounts, profiles, roles and account status.",
+          "users.html",
+        ],
+        [
+          "💳",
+          "Subscription Management",
+          "Plans, entitlements and subscription status.",
+          "modules.html#subscriptions",
+        ],
+        [
+          "💰",
+          "Payment Management",
+          "Payment records, invoices and transaction status.",
+          "modules.html#payments",
+        ],
+        [
+          "🕘",
+          "Watch History",
+          "Viewing activity and progress records.",
+          "modules.html#history",
+        ],
+        [
+          "📊",
+          "Reports & Analytics",
+          "Catalog, users, views and engagement reports.",
+          "modules.html#analytics",
+        ],
+        [
+          "🖼",
+          "Banner Management",
+          "Hero banners, sliders and campaign artwork.",
+          "modules.html#banners",
+        ],
+        [
+          "⭐",
+          "Featured Content",
+          "Choose homepage featured titles.",
+          "modules.html#featured",
+        ],
+        [
+          "🔥",
+          "Trending Content",
+          "Manage trending and Top 10 selections.",
+          "modules.html#trending",
+        ],
+        [
+          "🔔",
+          "Notifications",
+          "Site announcements and user notifications.",
+          "modules.html#notifications",
+        ],
+        [
+          "👤",
+          "Admin Profile",
+          "Admin identity, role and profile details.",
+          "modules.html#admin-profile",
+        ],
+        [
+          "⚙",
+          "Admin Settings",
+          "Dashboard preferences and access controls.",
+          "settings.html",
+        ],
+        [
+          "🌐",
+          "Site Settings",
+          "Branding, language, player and website options.",
+          "settings.html",
+        ],
+      ];
+      document.getElementById("modules").innerHTML = items
+        .map(
+          (x) =>
+            `<div class="module-card" id="${x[3].split("#")[1] || ""}"><b>${x[0]} ${x[1]}</b><span>${x[2]}</span><a href="${x[3]}">Open module →</a></div>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>

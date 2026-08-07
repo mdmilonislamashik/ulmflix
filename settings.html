@@ -1,0 +1,744 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Account Settings - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <style>
+
+.settings-page{
+padding-top:120px;
+padding-bottom:80px;
+}
+
+
+/* Header */
+
+.settings-header{
+background:
+linear-gradient(
+135deg,
+rgba(229,9,20,.18),
+rgba(255,255,255,.04)
+);
+
+padding:35px;
+border-radius:25px;
+
+border:1px solid rgba(255,255,255,.12);
+
+margin-bottom:35px;
+
+backdrop-filter:blur(20px);
+}
+
+
+.settings-header h1{
+
+font-size:44px;
+font-weight:900;
+
+margin-bottom:12px;
+
+background:
+linear-gradient(90deg,#fff,#e50914);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+
+
+/* Cards */
+
+.settings-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:24px;
+
+}
+
+
+.setting-card{
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.03)
+);
+
+
+border:
+
+1px solid
+rgba(255,255,255,.12);
+
+
+border-radius:24px;
+
+
+padding:28px;
+
+
+backdrop-filter:blur(18px);
+
+
+transition:.35s;
+
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,.35);
+
+}
+
+
+
+.setting-card:hover{
+
+transform:
+translateY(-6px);
+
+
+border-color:
+rgba(229,9,20,.5);
+
+
+}
+
+
+
+/* Title */
+
+.setting-card h3{
+
+font-size:20px;
+
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+
+
+.setting-card p{
+
+color:#aaa;
+
+}
+
+
+
+/* Inputs */
+
+
+.setting-control input,
+.setting-control select,
+.setting-control textarea{
+
+
+background:
+
+rgba(0,0,0,.45);
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+border-radius:16px;
+
+
+padding:15px;
+
+
+font-size:15px;
+
+
+color:white;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.setting-control input:focus,
+.setting-control select:focus,
+.setting-control textarea:focus{
+
+
+border-color:#e50914;
+
+
+box-shadow:
+
+0 0 20px rgba(229,9,20,.25);
+
+
+outline:none;
+
+
+}
+
+
+
+/* Toggle */
+
+
+.toggle-slider{
+
+background:#333;
+
+}
+
+
+.toggle input:checked + .toggle-slider{
+
+background:#e50914;
+
+}
+
+
+
+/* Buttons */
+
+
+.btn,
+.save-btn,
+.danger-btn{
+
+
+border-radius:16px;
+
+
+padding:15px 28px;
+
+
+font-weight:800;
+
+
+font-size:15px;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.save-btn{
+
+background:
+
+linear-gradient(
+135deg,
+#e50914,
+#ff4757
+);
+
+
+box-shadow:
+
+0 10px 30px rgba(229,9,20,.4);
+
+}
+
+
+
+.save-btn:hover,
+.danger-btn:hover{
+
+
+transform:
+translateY(-4px);
+
+
+}
+
+
+
+/* Status */
+
+
+.account-status{
+
+
+display:inline-flex;
+
+
+padding:10px 22px;
+
+
+border-radius:50px;
+
+
+background:
+
+rgba(0,200,100,.15);
+
+
+color:#6ff0a8;
+
+
+font-weight:800;
+
+
+}
+
+
+
+/* Danger */
+
+
+.danger-card{
+
+
+background:
+
+linear-gradient(
+145deg,
+rgba(229,9,20,.15),
+rgba(0,0,0,.3)
+);
+
+
+border-color:
+
+rgba(229,9,20,.4);
+
+}
+
+
+
+/* Message */
+
+.settings-message{
+
+
+border-radius:18px;
+
+padding:18px;
+
+
+backdrop-filter:blur(15px);
+
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+.settings-header h1{
+
+font-size:32px;
+
+}
+
+
+.setting-card{
+
+padding:22px;
+
+}
+
+}
+
+
+</style>
+  </head>
+
+  <body>
+    <nav class="nav scrolled" data-site-nav></nav>
+
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container settings-page">
+      <div class="settings-header">
+        <h1>Account Settings</h1>
+        <p class="muted">
+          Manage your ULMFlix profile, account preferences, privacy and
+          security.
+        </p>
+      </div>
+
+      <div id="settingsMessage" class="settings-message"></div>
+
+      <div class="settings-grid">
+        <div class="setting-card">
+          <h3>1. Profile Name</h3>
+          <p class="muted">Change your display name.</p>
+          <div class="setting-control">
+            <input id="profileName" type="text" placeholder="Your name" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>2. Username</h3>
+          <p class="muted">Set your public username.</p>
+          <div class="setting-control">
+            <input id="username" type="text" placeholder="@username" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>3. Email Address</h3>
+          <p class="muted">Manage your account email.</p>
+          <div class="setting-control">
+            <input id="email" type="email" placeholder="email@example.com" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>4. Profile Picture</h3>
+          <p class="muted">Add a profile image URL.</p>
+          <div class="setting-control">
+            <input id="avatar" type="url" placeholder="https://example.com/avatar.jpg" />
+            <input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+            <small class="muted">Upload to Supabase Storage or use a public image URL.</small>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>5. Bio</h3>
+          <p class="muted">Write something about yourself.</p>
+          <div class="setting-control">
+            <textarea id="bio" placeholder="Tell us about yourself"></textarea>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>6. Phone Number</h3>
+          <p class="muted">Save your contact number.</p>
+          <div class="setting-control">
+            <input id="phone" type="tel" placeholder="+880" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>7. Date of Birth</h3>
+          <p class="muted">Manage your birth date.</p>
+          <div class="setting-control">
+            <input id="dob" type="date" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>8. Gender</h3>
+          <p class="muted">Select your gender.</p>
+          <div class="setting-control">
+            <select id="gender">
+              <option value="">Prefer not to say</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>9. Country</h3>
+          <p class="muted">Select your country.</p>
+          <div class="setting-control">
+            <input id="country" type="text" placeholder="Bangladesh" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>10. City</h3>
+          <p class="muted">Set your current city.</p>
+          <div class="setting-control">
+            <input id="city" type="text" placeholder="Your city" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>11. Language</h3>
+          <p class="muted">Choose your preferred language.</p>
+          <div class="setting-control">
+            <select id="language">
+              <option value="en">English</option>
+              <option value="bn">à¦¬à¦¾à¦‚à¦²à¦¾</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>12. Time Zone</h3>
+          <p class="muted">Choose your time zone.</p>
+          <div class="setting-control">
+            <select id="timezone">
+              <option value="Asia/Dhaka">Asia/Dhaka</option>
+              <option value="Asia/Kolkata">Asia/Kolkata</option>
+              <option value="UTC">UTC</option>
+              <option value="America/New_York">America/New_York</option>
+              <option value="Europe/London">Europe/London</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>13. Account Status</h3>
+          <p class="muted">Current account status.</p>
+          <div id="accountStatus" class="account-status">Active</div>
+        </div>
+
+        <div class="setting-card">
+          <h3>14. Change Password</h3>
+          <p class="muted">Set a new demo password.</p>
+          <div class="setting-control">
+            <input id="password" type="password" placeholder="New password" />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>15. Confirm Password</h3>
+          <p class="muted">Confirm your new password.</p>
+          <div class="setting-control">
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm password"
+            />
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>16. Remember Me</h3>
+              <p class="muted">Remember your local session.</p>
+            </div>
+            <label class="toggle">
+              <input id="rememberMe" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>17. Auto Login</h3>
+              <p class="muted">Enable automatic demo login.</p>
+            </div>
+            <label class="toggle">
+              <input id="autoLogin" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>18. Email Notifications</h3>
+              <p class="muted">Receive account notifications.</p>
+            </div>
+            <label class="toggle">
+              <input id="emailNotifications" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>19. Login Alerts</h3>
+              <p class="muted">Show alerts for new logins.</p>
+            </div>
+            <label class="toggle">
+              <input id="loginAlerts" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>20. Security Alerts</h3>
+              <p class="muted">Enable security notifications.</p>
+            </div>
+            <label class="toggle">
+              <input id="securityAlerts" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>21. Watchlist Privacy</h3>
+              <p class="muted">Keep your watchlist private.</p>
+            </div>
+            <label class="toggle">
+              <input id="watchlistPrivacy" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>22. Profile Visibility</h3>
+              <p class="muted">Make your profile visible.</p>
+            </div>
+            <label class="toggle">
+              <input id="profileVisibility" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>23. Online Status</h3>
+              <p class="muted">Show your online status.</p>
+            </div>
+            <label class="toggle">
+              <input id="onlineStatus" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>24. Show Activity</h3>
+              <p class="muted">Allow activity visibility.</p>
+            </div>
+            <label class="toggle">
+              <input id="showActivity" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>25. Recommendations</h3>
+              <p class="muted">Enable personalized recommendations.</p>
+            </div>
+            <label class="toggle">
+              <input id="recommendations" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>26. Adult Content Filter</h3>
+              <p class="muted">Filter mature content.</p>
+            </div>
+            <label class="toggle">
+              <input id="adultFilter" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="toggle-row">
+            <div>
+              <h3>27. Data Saving Mode</h3>
+              <p class="muted">Reduce data usage while browsing.</p>
+            </div>
+            <label class="toggle">
+              <input id="dataSaving" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <h3>28. Clear Watch History</h3>
+          <p class="muted">Remove locally stored watch history.</p>
+          <button id="clearHistory" class="btn btn-dark" type="button">
+            Clear History
+          </button>
+        </div>
+
+        <div class="setting-card">
+          <h3>29. Reset Account Data</h3>
+          <p class="muted">Reset all account settings to default.</p>
+          <button id="resetAccount" class="btn btn-dark" type="button">
+            Reset Account
+          </button>
+        </div>
+
+        <div class="setting-card danger-card">
+          <h3>30. Delete Demo Account</h3>
+          <p class="muted">
+            Permanently remove local demo account data from this browser.
+          </p>
+          <button id="deleteAccount" class="btn danger-btn" type="button">
+            Delete Account
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-card">
+        <h3>31. Change Password</h3>
+        <p class="muted">Update your Supabase account password.</p>
+        <form id="updatePasswordForm" class="setting-control">
+          <input id="newPassword" type="password" minlength="8" autocomplete="new-password" placeholder="New password (8+ characters)" required />
+          <input id="newPasswordConfirm" type="password" minlength="8" autocomplete="new-password" placeholder="Confirm new password" required />
+          <button class="btn btn-red" type="submit">Change Password</button>
+        </form>
+      </div>
+
+      <div class="setting-card danger-card">
+        <h3>32. Permanently Delete Account</h3>
+        <p class="muted">This deletes the authenticated Supabase account and its related data. This cannot be undone.</p>
+        <button id="deleteAccountBtn" class="btn danger-btn" type="button">Delete My Account Permanently</button>
+      </div>
+
+      <div class="settings-actions">
+        <button id="saveSettings" class="btn save-btn" type="button">
+          Save Settings
+        </button>
+
+        <button id="reloadSettings" class="btn btn-dark" type="button">
+          Reload Saved Settings
+        </button>
+      </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/settings.js"></script>
+      <script src="js/ads.js"></script>
+  </body>
+</html>
+

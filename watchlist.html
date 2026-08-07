@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>My Watchlist - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <style>
+      .watchlist-page {
+        padding-top: 105px;
+        padding-bottom: 70px;
+      }
+
+      .watchlist-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .watchlist-header h1 {
+        margin: 0 0 8px;
+      }
+
+      .watchlist-header p {
+        margin: 0;
+      }
+
+      .watchlist-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .watchlist-toolbar {
+        display: grid;
+        grid-template-columns: 1fr 180px;
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+
+      .watchlist-toolbar input,
+      .watchlist-toolbar select {
+        width: 100%;
+        padding: 13px 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        color: inherit;
+        box-sizing: border-box;
+      }
+
+      .watchlist-summary {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+
+      .summary-card {
+        padding: 15px 20px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .summary-card strong {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+
+      .watchlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 20px;
+      }
+
+      .watchlist-card {
+        overflow: hidden;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .watchlist-poster {
+        position: relative;
+        aspect-ratio: 2 / 3;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .watchlist-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .watchlist-content {
+        padding: 15px;
+      }
+
+      .watchlist-title {
+        margin: 0 0 8px;
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .watchlist-meta {
+        font-size: 13px;
+        opacity: 0.7;
+        margin-bottom: 14px;
+      }
+
+      .watchlist-buttons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .watchlist-buttons button,
+      .watchlist-buttons a {
+        flex: 1;
+        text-align: center;
+        padding: 9px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .remove-btn {
+        border: 1px solid rgba(229, 9, 20, 0.4);
+        background: rgba(229, 9, 20, 0.1);
+        color: #ff6b73;
+      }
+
+      .details-btn {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: inherit;
+      }
+
+      .empty-watchlist {
+        text-align: center;
+        padding: 70px 20px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .empty-watchlist h2 {
+        margin-bottom: 10px;
+      }
+
+      .empty-watchlist p {
+        margin-bottom: 22px;
+      }
+
+      @media (max-width: 700px) {
+        .watchlist-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .watchlist-toolbar {
+          grid-template-columns: 1fr;
+        }
+
+        .watchlist-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav scrolled" data-site-nav></nav>
+
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container watchlist-page">
+      <div class="watchlist-header">
+        <div>
+          <h1>My Watchlist</h1>
+
+          <p class="muted">Save movies you want to watch later.</p>
+        </div>
+
+        <div class="watchlist-actions">
+          <a href="movies.html" class="btn btn-dark"> Browse Movies </a>
+
+          <button id="clearWatchlist" class="btn btn-dark" type="button">
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <div class="watchlist-summary">
+        <div class="summary-card">
+          <strong id="totalMovies">0</strong>
+          <span class="muted">Saved Movies</span>
+        </div>
+
+        <div class="summary-card">
+          <strong id="averageRating">0.0</strong>
+          <span class="muted">Average Rating</span>
+        </div>
+      </div>
+
+      <div class="watchlist-toolbar">
+        <input
+          id="watchlistSearch"
+          type="search"
+          placeholder="Search your watchlist..."
+        />
+
+        <select id="watchlistSort">
+          <option value="newest">Recently Added</option>
+
+          <option value="title">Title A-Z</option>
+
+          <option value="rating">Highest Rated</option>
+
+          <option value="year">Newest Release</option>
+        </select>
+      </div>
+
+      <div id="watchlistGrid" class="watchlist-grid"></div>
+
+      <div id="emptyWatchlist" class="empty-watchlist" style="display: none">
+        <h2>Your watchlist is empty</h2>
+
+        <p class="muted">Find a movie you like and add it to your watchlist.</p>
+
+        <a href="movies.html" class="btn btn-dark"> Explore Movies </a>
+      </div>
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/library.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const grid=document.getElementById("watchlistGrid"), total=document.getElementById("totalMovies"), avg=document.getElementById("averageRating"), search=document.getElementById("watchlistSearch"), sort=document.getElementById("watchlistSort"), clear=document.getElementById("clearWatchlist");
+        let movies=[];
+        async function load(){ try{ movies=await window.SFLibrary.listFavorites(); render(); }catch(e){console.error(e);grid.innerHTML='<div class="status">Could not load your watchlist.</div>';}}
+        function render(){ const q=(search.value||'').toLowerCase(); let a=movies.filter(m=>(m.title||'').toLowerCase().includes(q)); if(sort.value==='rating')a.sort((x,y)=>(Number(y.vote_average)||0)-(Number(x.vote_average)||0)); else if(sort.value==='year')a.sort((x,y)=>(Number(y.release_year)||0)-(Number(x.release_year)||0)); total.textContent=a.length; const ratings=a.map(x=>Number(x.vote_average)||0).filter(Boolean); avg.textContent=ratings.length?(ratings.reduce((s,n)=>s+n,0)/ratings.length).toFixed(1):'0.0'; grid.innerHTML=a.length?a.map(m=>`<article class="watchlist-card"><div class="watchlist-poster"><img src="${m.poster_url||m.poster_path||'assets/images/placeholder-action.svg'}" alt="${String(m.title||'Untitled').replace(/"/g,'&quot;')}" loading="lazy"></div><div class="watchlist-content"><h3 class="watchlist-title">${m.title||'Untitled Movie'}</h3><div class="watchlist-meta">${m.release_year||'N/A'} · ★ ${(Number(m.vote_average)||0).toFixed(1)}</div><div class="watchlist-buttons"><a class="details-btn" href="details.html?id=${encodeURIComponent(m.id)}">Details</a><button class="remove-btn" data-remove="${m.id}" type="button">Remove</button></div></div></article>`).join(''):'<div class="empty-watchlist"><h2>Your watchlist is empty</h2><p class="muted">Save movies from the catalog and they will appear here.</p><a class="btn btn-red" href="movies.html">Browse Movies</a></div>'; }
+        grid.addEventListener('click',async e=>{const b=e.target.closest('[data-remove]');if(!b)return;if(!confirm('Remove this movie from your watchlist?'))return;try{await window.SFLibrary.removeFavorite(b.dataset.remove);await load();}catch(err){alert(err.message||'Could not remove movie.')}});
+        clear.addEventListener('click',async()=>{if(!movies.length)return;if(!confirm('Clear your entire watchlist?'))return;try{await window.SFLibrary.clearFavorites();await load();}catch(err){alert(err.message||'Could not clear watchlist.')}}); search.addEventListener('input',render);sort.addEventListener('change',render); await load();
+      });
+    </script>
+      <script src="js/ads.js"></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Income Dashboard - ULMFlix</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/income-center.css">
+<style>
+.global-shell{max-width:1180px;margin:0 auto;padding:110px 20px 60px}
+.global-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px}
+.global-card{background:#141414;border:1px solid #2b2b2b;border-radius:18px;padding:24px}
+.global-card h2{margin-top:0}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}.field label{font-size:13px;color:#aaa}.field input,.field select{background:#0e0e0e;border:1px solid #333;color:#fff;border-radius:10px;padding:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #444;border-radius:999px;padding:8px 11px;color:#ddd;background:#101010;cursor:pointer}.chip.active{border-color:#e50914;background:#2a0d0d}
+.progress{height:9px;background:#262626;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:#e50914;width:0}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{background:#101010;border:1px solid #2b2b2b;border-radius:14px;padding:15px}.metric strong{font-size:24px;display:block;margin-top:4px}
+.recommendations{display:grid;gap:10px}.recommendation{border:1px solid #2b2b2b;border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:15px;align-items:center}
+.muted{color:#9a9a9a}.notice{margin:15px 0;padding:12px 14px;border-radius:10px;background:#191919;color:#ddd}
+@media(max-width:850px){.global-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav scrolled" data-site-nav></nav>
+<main class="global-shell">
+  <section class="income-hero">
+    <div>
+      <span class="eyebrow">ULMFLIX GLOBAL INCOME</span>
+      <h1 id="welcomeTitle">Your personalized income dashboard</h1>
+      <p>Choose your country, currency, skills and available platforms. ULMFlix will personalize income opportunities and keep your private profile separated from other users.</p>
+    </div>
+  </section>
+
+  <div id="authNotice" class="notice"></div>
+
+  <section class="global-grid">
+    <div class="global-card">
+      <h2>Your profile & income goal</h2>
+      <div class="field-grid">
+        <div class="field"><label>Country</label><select id="country"></select></div>
+        <div class="field"><label>Currency</label><select id="currency"></select></div>
+        <div class="field"><label>Target income</label><input id="targetIncome" type="number" min="0" step="1" placeholder="1000"></div>
+        <div class="field"><label>Goal period</label><select id="goalPeriod"><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select></div>
+      </div>
+
+      <h3>Skills</h3>
+      <div id="skills" class="chips"></div>
+      <h3>Available platforms / tools</h3>
+      <div id="platforms" class="chips"></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+        <button class="btn btn-red" id="saveProfile">Save & personalize</button>
+        <button class="btn btn-dark" id="syncNow">Sync online</button>
+        <button class="btn btn-dark" id="exportProfile">Export profile</button>
+      </div>
+    </div>
+
+    <div class="global-card">
+      <h2>Your progress</h2>
+      <div class="metric-grid">
+        <div class="metric"><span class="muted">Goal</span><strong id="goalMetric">$0</strong></div>
+        <div class="metric"><span class="muted">Selected streams</span><strong id="streamMetric">0</strong></div>
+        <div class="metric"><span class="muted">Local/online</span><strong id="dataMetric">Local</strong></div>
+      </div>
+      <p class="muted" style="margin-top:22px">Target progress is based on the income streams you choose in Income Center. It is a planning tool, not a promise of earnings.</p>
+      <div class="progress"><span id="progressBar"></span></div>
+      <p id="progressText" class="muted">0% of target planned</p>
+      <a class="btn btn-red" href="income.html">Open 170+ Income Options</a>
+    </div>
+  </section>
+
+  <section class="global-card" style="margin-top:22px">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap">
+      <div><span class="eyebrow">SMART MATCHING</span><h2>Recommended income opportunities</h2><p class="muted">Matched from your selected skills and platforms.</p></div>
+    </div>
+    <div id="recommendations" class="recommendations"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/income-options.js"></script>
+<script src="js/global-income.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>

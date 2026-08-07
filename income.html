@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Income Center - ULMFlix</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/income-center.css">
+</head>
+<body>
+<nav class="nav scrolled" data-site-nav></nav>
+<main class="income-shell container">
+  <section class="income-hero">
+    <div>
+      <span class="eyebrow">ULMFLIX INCOME CENTER</span>
+      <h1>Build your income engine</h1>
+      <p>Explore 170+ monetization models, save your own plan, track targets and keep a local copy. Cloud sync is available when your secure online account is connected.</p>
+    </div>
+    <div class="income-hero-actions">
+      <button class="btn btn-red" id="addIncomeBtn">+ Add income stream</button>
+      <button class="btn btn-dark" id="exportIncomeBtn">Export plan</button>
+      <label class="btn btn-dark file-btn">Import plan<input id="importIncomeInput" type="file" accept="application/json" hidden></label>
+    </div>
+  </section>
+
+  <section class="income-stats">
+    <div class="income-stat"><span>Options</span><strong id="optionCount">170+</strong><small>Ideas across 10 categories</small></div>
+    <div class="income-stat"><span>Selected</span><strong id="selectedCount">0</strong><small>Streams in your plan</small></div>
+    <div class="income-stat"><span>Monthly target</span><strong id="targetTotal">$0</strong><small>Your planned target</small></div>
+    <div class="income-stat"><span>Data</span><strong id="syncStatus">Local</strong><small>Fast local-first storage</small></div>
+  </section>
+
+  <section class="income-toolbar">
+    <input id="incomeSearch" class="income-search" placeholder="Search income ideas, e.g. affiliate, course, ads..." autocomplete="off">
+    <select id="incomeCategory" class="income-select"><option value="all">All categories</option></select>
+    <select id="incomeAvailability" class="income-select"><option value="all">All availability</option><option value="varies">Availability varies by country</option></select>
+    <button class="btn btn-dark" id="syncIncomeBtn">☁ Sync online</button>
+  </section>
+
+  <div id="incomeNotice" class="income-notice" role="status"></div>
+  <section id="incomeGrid" class="income-grid" aria-live="polite"></section>
+  <div class="income-pagination"><button class="btn btn-dark" id="prevPage">Previous</button><span id="pageLabel">Page 1</span><button class="btn btn-dark" id="nextPage">Next</button></div>
+
+  <section class="income-plan">
+    <div class="section-heading"><div><span class="eyebrow">YOUR PLAN</span><h2>Selected income streams</h2></div><button class="btn btn-dark" id="clearPlanBtn">Clear selected</button></div>
+    <div id="planList" class="plan-list"></div>
+  </section>
+
+  <section class="income-disclaimer">
+    <strong>Important:</strong> these are monetization ideas, not guaranteed earnings. Availability, tax rules, payment providers, platform policies, advertising rules, copyright/licensing requirements and eligibility differ by country. Only use models that are lawful and permitted for your content and business.
+  </section>
+</main>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/income-options.js"></script>
+<script src="js/income-center.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>

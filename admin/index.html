@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULMFlix Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="top-header">
+
+    <button class="menu-btn" id="menuBtn">
+        ☰
+    </button>
+
+    <a href="index.html" class="logo">
+        ULMFLIX ADMIN
+    </a>
+
+    <div class="nav-right">
+        <a href="../index.html" class="btn btn-dark">
+            View Website
+        </a>
+    </div>
+
+</header>
+
+<div class="layout">
+
+
+<aside class="admin-sidebar">
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Overview</div>
+
+        <a href="index.html" class="active">
+            <span class="sf-icon sf-icon-dashboard"></span>
+            <span>Dashboard</span>
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Content</div>
+
+        <a href="content.html">
+            <span class="sf-icon sf-icon-content"></span>
+            <span>Content System</span>
+        </a>
+
+        <a href="movies.html">
+            <span class="sf-icon sf-icon-movie"></span>
+            <span>Manage Movies</span>
+        </a>
+
+        <a href="../income.html">
+            <span class="sf-icon sf-icon-money"></span>
+            <span>Income Center (170+)</span>
+        </a>
+
+        <a href="monetization.html">
+            <span class="sf-icon sf-icon-money"></span>
+            <span>Monetization</span>
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Content System</div>
+
+        <a href="modules.html">
+            <span class="sf-icon sf-icon-modules"></span>
+            <span>All Admin Modules</span>
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Management</div>
+
+        <a href="users.html">
+            <span class="sf-icon sf-icon-users"></span>
+            <span>Users</span>
+        </a>
+
+        <a href="settings.html">
+            <span class="sf-icon sf-icon-settings"></span>
+            <span>Settings</span>
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-label">Website</div>
+
+        <a href="../index.html">
+            <span class="sf-icon sf-icon-external"></span>
+            <span>View Website</span>
+        </a>
+    </div>
+
+</aside>
+
+<main class="content">
+
+<div class="topbar">
+
+    <div>
+        <div class="admin-kicker">Control Center</div>
+        <h1>Admin Dashboard</h1>
+        <p>Run your entire ULMFlix website from one professional control center.</p>
+    </div>
+
+    <div class="actions">
+        <a href="movies.html" class="btn btn-red">
+            + Add Movie
+        </a>
+
+
+    </div>
+
+</div>
+
+<section class="stats">
+
+<div class="stat">
+<span class="label">Total Movies</span>
+<strong id="movieCount">0</strong>
+<small>Total catalog</small>
+</div>
+
+<div class="stat">
+<span class="label">Published</span>
+<strong id="publishedCount">0</strong>
+<small>Public movies</small>
+</div>
+
+<div class="stat">
+<span class="label">Users</span>
+<strong id="userCount">0</strong>
+<small>Registered users</small>
+</div>
+
+<div class="stat">
+<span class="label">Video Sources</span>
+<strong id="videoCount">0</strong>
+<small>Legal video URLs</small>
+</div>
+
+</section>
+
+<div class="grid2">
+
+<section class="panel">
+<h2>Quick Actions</h2>
+
+<div class="quick-actions">
+
+    <a href="movies.html" class="quick-action">
+        <span class="sf-icon sf-icon-movie"></span>
+        <span>
+            <strong>Manage Movies</strong>
+            <small>Add, edit and publish titles</small>
+        </span>
+    </a>
+
+    <a href="users.html" class="quick-action">
+        <span class="sf-icon sf-icon-users"></span>
+        <span>
+            <strong>Manage Users</strong>
+            <small>Review registered accounts</small>
+        </span>
+    </a>
+
+    <a href="ads.html" class="quick-action"><span class="sf-icon sf-icon-money"></span><span><strong>Ad Placement Control</strong><small>Enable or disable public ad slots</small></span></a><a href="file-manager.html" class="quick-action"><span class="sf-icon sf-icon-content"></span><span><strong>Files & Pages</strong><small>Upload, create, organize and download your own content</small></span></a>
+
+    <a href="settings.html" class="quick-action">
+        <span class="sf-icon sf-icon-settings"></span>
+        <span>
+            <strong>Website Settings</strong>
+            <small>Customize core site options</small>
+        </span>
+    </a>
+
+    <a href="../income.html" class="quick-action"><span class="sf-icon sf-icon-money"></span><span><strong>Income Center</strong><small>170+ income models, planning and sync</small></span></a>
+
+    <a href="revenue.html" class="quick-action">
+        <span class="sf-icon sf-icon-money"></span>
+        <span>
+            <strong>Revenue Dashboard</strong>
+            <small>Track subscriptions, ads and other income</small>
+        </span>
+    </a>
+
+</div>
+<section class="panel">
+
+<h2>System Status</h2>
+
+<p class="system-status">
+Admin Panel:
+<span class="badge green">Online</span>
+</p>
+
+<p class="note">
+Data is currently stored in browser LocalStorage.
+</p>
+
+</section>
+
+</div>
+
+<section class="panel">
+
+<h2>Recently Added Movies</h2>
+
+<div class="table-wrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Title</th>
+<th>Genre</th>
+<th>Status</th>
+<th>Added</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recentRows"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

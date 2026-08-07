@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Earn & Monetize - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/earn.css" />
+  </head>
+
+  <body>
+    <nav class="nav scrolled" data-site-nav></nav>
+
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container earn-page">
+      <section class="earn-hero">
+        <h1>Earn & Monetize</h1>
+
+        <p class="muted">
+          Build sustainable revenue with ULMFlix through premium memberships,
+          advertising, affiliate marketing, sponsorships, partnerships and
+          audience support.
+        </p>
+
+        <div id="monetizationStatus" class="earn-status off">
+          ● Monetization ready
+        </div>
+      </section>
+
+      <div id="earnMessage" class="earn-message">
+        Settings saved successfully.
+      </div>
+
+      <section class="earn-stats">
+        <div class="earn-stat">
+          <span>Total Revenue</span>
+          <strong id="totalRevenue">$0.00</strong>
+        </div>
+
+        <div class="earn-stat">
+          <span>Subscription Revenue</span>
+          <strong id="subscriptionRevenue">$0.00</strong>
+        </div>
+
+        <div class="earn-stat">
+          <span>Membership</span>
+          <strong id="premiumStatus">Free</strong>
+        </div>
+
+        <div class="earn-stat">
+          <span>Revenue Status</span>
+          <strong>Ready</strong>
+        </div>
+      </section>
+
+      <h2 class="earn-section-title">Premium Membership</h2>
+
+      <div class="earn-grid">
+        <div class="earn-card premium">
+          <span class="earn-badge"> Popular </span>
+
+          <h3>Monthly Premium</h3>
+
+          <p>Perfect for users who want flexible monthly access.</p>
+
+          <div class="price">$4.99 <small>/ month</small></div>
+
+          <ul class="earn-feature-list">
+            <li>Premium content access</li>
+            <li>VIP member badge</li>
+            <li>Reduced advertising</li>
+            <li>Premium watchlist features</li>
+            <li>Priority support</li>
+          </ul>
+
+          <button id="monthlyPlan" class="btn btn-dark">Upgrade Monthly</button>
+        </div>
+
+        <div class="earn-card">
+          <h3>Yearly Premium</h3>
+
+          <p>Best value plan for long-term members.</p>
+
+          <div class="price">$49.99 <small>/ year</small></div>
+
+          <ul class="earn-feature-list">
+            <li>All premium content</li>
+            <li>VIP member badge</li>
+            <li>Reduced advertising</li>
+            <li>Premium watchlist</li>
+            <li>Priority support</li>
+          </ul>
+
+          <button id="yearlyPlan" class="btn btn-dark">Upgrade Yearly</button>
+        </div>
+      </div>
+
+      <h2 class="earn-section-title">Revenue Methods</h2>
+
+      <div class="earn-grid">
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">📺</div>
+
+          <h3>Advertisement</h3>
+
+          <p>
+            Monetize traffic through compliant advertising networks and
+            sponsored ad placements.
+          </p>
+
+          <span class="method-status"> Ready for integration </span>
+        </div>
+
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">🔗</div>
+
+          <h3>Affiliate Marketing</h3>
+
+          <p>
+            Promote relevant legal products and services through affiliate
+            partnerships.
+          </p>
+
+          <span class="method-status"> Available </span>
+        </div>
+
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">🤝</div>
+
+          <h3>Sponsored Content</h3>
+
+          <p>Offer sponsored placements to suitable brands and partners.</p>
+
+          <span class="method-status"> Available </span>
+        </div>
+
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">❤️</div>
+
+          <h3>Donation & Support</h3>
+
+          <p>Allow your audience to support your platform and content.</p>
+
+          <button id="donationButton" class="btn btn-dark">
+            Support ULMFlix
+          </button>
+        </div>
+
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">🏢</div>
+
+          <h3>Partner Program</h3>
+
+          <p>
+            Create partnerships with brands, creators and legally licensed
+            content providers.
+          </p>
+
+          <span class="method-status"> Available </span>
+        </div>
+
+        <div class="earn-card earn-method">
+          <div class="earn-method-icon">🎬</div>
+
+          <h3>Premium Content</h3>
+
+          <p>
+            Create exclusive content that is legally owned or licensed for
+            premium members.
+          </p>
+
+          <span class="method-status"> Ready </span>
+        </div>
+      </div>
+
+      <h2 class="earn-section-title">Premium Content Preview</h2>
+
+      <div class="premium-lock">
+        <div class="lock-icon">🔒</div>
+
+        <h3>Premium Content</h3>
+
+        <p class="muted">
+          This area can be used for legally owned or licensed premium content
+          available only to subscribers.
+        </p>
+
+        <button class="btn btn-dark">Become Premium</button>
+      </div>
+
+      <h2 class="earn-section-title">Payment Settings</h2>
+
+      <div class="earn-card">
+        <div class="earn-form">
+          <div>
+            <label>Payment Method</label>
+
+            <select id="paymentMethod">
+              <option value="">Select payment method</option>
+
+              <option value="bank">Bank Transfer</option>
+
+              <option value="paypal">PayPal</option>
+
+              <option value="stripe">Stripe</option>
+
+              <option value="mobile">Mobile Payment</option>
+            </select>
+          </div>
+
+          <div>
+            <label> Payment Account / Email </label>
+
+            <input
+              id="paymentAccount"
+              type="text"
+              placeholder="Enter payment account"
+            />
+          </div>
+
+          <button id="savePayment" class="btn btn-dark">
+            Save Payment Settings
+          </button>
+        </div>
+      </div>
+
+      <h2 class="earn-section-title">Promo Code</h2>
+
+      <div class="earn-card">
+        <div class="earn-form">
+          <label> Enter promotional code </label>
+
+          <input id="promoCode" type="text" placeholder="PROMO2026" />
+
+          <button id="applyPromo" class="btn btn-dark">Apply Promo Code</button>
+        </div>
+      </div>
+
+      <h2 class="earn-section-title">Subscription History</h2>
+
+      <div class="earn-card">
+        <div style="overflow-x: auto">
+          <table class="revenue-table">
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="subscriptionHistory">
+              <tr>
+                <td colspan="4">No subscription history yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <section class="container" style="padding:20px 0 40px"><div class="notice"><strong>AdSense setup:</strong> add your approved publisher ID in <code>js/config.js</code>. See <code>ADSENSE_SETUP.md</code> for the launch checklist.</div></section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/earn.js"></script>
+    <script src="js/ads.js"></script>
+  </body>
+</html>

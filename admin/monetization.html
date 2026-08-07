@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Monetization - ULMFlix Admin</title>
+
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <style>
+      .monetization-page {
+        padding: 30px;
+      }
+
+      .monetization-header {
+        margin-bottom: 28px;
+      }
+
+      .monetization-header h1 {
+        margin-bottom: 8px;
+      }
+
+      .monetization-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .money-card {
+        padding: 22px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+      }
+
+      .money-card h3 {
+        margin-top: 0;
+      }
+
+      .money-card p {
+        color: #6b7280;
+        line-height: 1.5;
+      }
+
+      .money-card input,
+      .money-card select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px;
+        margin-top: 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+      }
+
+      .money-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .money-toggle input {
+        width: 20px;
+        height: 20px;
+      }
+
+      .revenue-card {
+        background: linear-gradient(135deg, #111827, #1f2937);
+        color: #fff;
+      }
+
+      .revenue-card p {
+        color: #d1d5db;
+      }
+
+      .revenue-value {
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .save-area {
+        margin-top: 28px;
+      }
+
+      .save-button {
+        padding: 12px 22px;
+        border: 0;
+        border-radius: 8px;
+        background: #e50914;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .status-message {
+        display: none;
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      @media (max-width: 900px) {
+        .monetization-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .monetization-page {
+          padding: 18px;
+        }
+
+        .monetization-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="monetization-summary" id="monetizationSummary">
+      <div class="monetization-stat">
+        <span class="stat-label">Total Revenue</span>
+        <strong id="totalRevenueDisplay">$0.00</strong>
+        <small>Current platform revenue</small>
+      </div>
+
+      <div class="monetization-stat">
+        <span class="stat-label">Subscription Revenue</span>
+        <strong id="subscriptionRevenueDisplay">$0.00</strong>
+        <small>Revenue from premium members</small>
+      </div>
+
+      <div class="monetization-stat">
+        <span class="stat-label">Monetization Status</span>
+        <strong id="monetizationStatusDisplay">Active</strong>
+        <small>Current platform status</small>
+      </div>
+    </div>
+
+    <div
+      id="monetizationMessage"
+      class="monetization-message"
+      aria-live="polite"
+    ></div>
+
+    <main class="monetization-page">
+      <div class="monetization-header">
+        <h1>Monetization Management</h1>
+
+        <p>
+          Manage ULMFlix revenue sources, premium membership, advertising,
+          sponsorships, affiliate marketing and payments.
+        </p>
+      </div>
+
+      <div class="monetization-grid">
+        <div class="money-card revenue-card">
+          <h3>Total Revenue</h3>
+
+          <p>Current platform revenue</p>
+
+          <div id="totalRevenue" class="revenue-value">$0.00</div>
+        </div>
+
+        <div class="money-card revenue-card">
+          <h3>Subscription Revenue</h3>
+
+          <p>Revenue from premium members</p>
+
+          <div id="subscriptionRevenue" class="revenue-value">$0.00</div>
+        </div>
+
+        <div class="money-card revenue-card">
+          <h3>Monetization Status</h3>
+
+          <p>Current platform status</p>
+
+          <div id="monetizationStatus" class="revenue-value">Ready</div>
+        </div>
+
+        <div class="money-card">
+          <h3>Premium Membership</h3>
+
+          <p>Enable or disable premium membership.</p>
+
+          <div class="money-toggle">
+            <span>Enable Premium</span>
+
+            <input id="premiumEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Monthly Subscription</h3>
+
+          <p>Set monthly premium membership price.</p>
+
+          <label>Monthly Price</label>
+
+          <input
+            id="monthlyPrice"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="4.99"
+          />
+        </div>
+
+        <div class="money-card">
+          <h3>Yearly Subscription</h3>
+
+          <p>Set yearly premium membership price.</p>
+
+          <label>Yearly Price</label>
+
+          <input
+            id="yearlyPrice"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="49.99"
+          />
+        </div>
+
+        <div class="money-card">
+          <h3>Advertisement</h3>
+
+          <p>Manage advertising monetization.</p>
+
+          <div class="money-toggle">
+            <span>Enable Ads</span>
+
+            <input id="sponsorshipEnabled" id="adsEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Affiliate Marketing</h3>
+
+          <p>Enable affiliate marketing opportunities.</p>
+
+          <div class="money-toggle">
+            <span>Enable Affiliate</span>
+
+            <input
+              id="sponsorshipEnabled"
+              id="affiliateEnabled"
+              type="checkbox"
+            />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Sponsored Content</h3>
+
+          <p>Enable sponsored content opportunities.</p>
+
+          <div class="money-toggle">
+            <span>Enable Sponsorship</span>
+
+            <input id="partnersEnabled" id="sponsorEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Donation</h3>
+
+          <p>Allow visitors to support ULMFlix.</p>
+
+          <div class="money-toggle">
+            <span>Enable Donation</span>
+
+            <input id="partnersEnabled" id="donationEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Partner Program</h3>
+
+          <p>Manage brand and content partnerships.</p>
+
+          <div class="money-toggle">
+            <span>Enable Partners</span>
+
+            <input id="partnersEnabled" id="partnerEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>Payment Provider</h3>
+
+          <p>Select the payment provider for future integration.</p>
+
+          <select id="paymentProvider">
+            <option value="">Select Provider</option>
+
+            <option value="stripe">Stripe</option>
+
+            <option value="paypal">PayPal</option>
+
+            <option value="sslcommerz">SSLCommerz</option>
+
+            <option value="manual">Manual Payment</option>
+          </select>
+        </div>
+
+        <div class="money-card">
+          <h3>Payment Account</h3>
+
+          <p>Configure the receiving payment account.</p>
+
+          <input
+            id="paymentAccount"
+            type="text"
+            placeholder="Payment email or account"
+          />
+        </div>
+
+        <div class="money-card">
+          <h3>Promo Code</h3>
+
+          <p>Set a promotional code for premium membership.</p>
+
+          <input id="promoCode" type="text" placeholder="PROMO2026" />
+        </div>
+
+        <div class="money-card">
+          <h3>Premium Content</h3>
+
+          <p>Control access to premium content.</p>
+
+          <div class="money-toggle">
+            <span>Enable Content Lock</span>
+
+            <input id="contentLockEnabled" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="money-card">
+          <h3>VIP Membership</h3>
+
+          <p>Enable VIP member benefits and badges.</p>
+
+          <div class="money-toggle">
+            <span>Enable VIP</span>
+
+            <input id="vipEnabled" type="checkbox" />
+          </div>
+        </div>
+      </div>
+
+      <div class="save-area">
+        <button id="saveMonetization" class="save-button">
+          Save Monetization Settings
+        </button>
+
+        <div id="statusMessage" class="status-message">
+          Monetization settings saved successfully.
+        </div>
+      </div>
+
+      <div class="monetization-save-panel">
+        <div class="monetization-save-inner">
+          <div class="save-status-area">
+            <div class="save-status-icon">✓</div>
+
+            <div class="save-status-content">
+              <span
+                id="saveStatusTitle"
+                class="save-status-title settings-saved"
+              >
+                All changes saved
+              </span>
+
+              <span id="saveStatusText" class="save-status-text">
+                Your monetization settings are up to date.
+              </span>
+            </div>
+          </div>
+
+          <div class="save-actions">
+            <button id="resetMonetization" class="reset-btn" type="button">
+              Reset Changes
+            </button>
+
+            <button
+              id="saveMonetizationSettings"
+              class="save-btn"
+              type="button"
+              disabled
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+
+        <div id="saveNotification" class="save-notification"></div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase-config.js"></script>
+    <script src="./js/supabase-client.js"></script>
+    <script src="./js/monetization.js"></script>
+  <script src="../js/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase-config.js"></script><script src="../js/supabase-client.js"></script><script src="js/admin-auth.js"></script></body>
+</html>

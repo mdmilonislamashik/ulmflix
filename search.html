@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Search movies and TV series on ULMFlix."
+    />
+
+    <title>Search - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="nav scrolled" data-site-nav></nav>
+
+    <!-- =========================
+         SEARCH PAGE
+    ========================== -->
+
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container" style="padding-top: 110px">
+      <section class="search-page">
+        <!-- =========================
+                 SEARCH HEADER
+            ========================== -->
+
+        <header class="search-header">
+          <h1>Search ULMFlix</h1>
+
+          <p class="muted">Find your favorite movies and TV series.</p>
+
+          <!-- =========================
+                     SEARCH INPUT
+                ========================== -->
+
+          <div
+            class="search-box"
+            style="display: flex; gap: 10px; margin-top: 20px"
+          >
+            <label for="searchInput" class="sr-only">
+              Search movies and TV series
+            </label>
+
+            <input
+              class="search"
+              id="searchInput"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Search movies, series..."
+              aria-label="Search movies and TV series"
+              aria-controls="searchGrid"
+            />
+
+            <button
+              class="btn btn-red"
+              id="clearSearch"
+              type="button"
+              aria-label="Clear search"
+            >
+              Clear
+            </button>
+          </div>
+
+          <!-- =========================
+                     SEARCH STATUS
+                ========================== -->
+
+          <div
+            id="searchStatus"
+            class="status"
+            role="status"
+            aria-live="polite"
+            style="display: none; margin-top: 15px"
+          ></div>
+        </header>
+
+        <!-- =========================
+                 SEARCH RESULTS
+            ========================== -->
+
+        <section class="search-results" style="margin-top: 30px">
+          <div
+            id="searchGrid"
+            class="grid"
+            aria-live="polite"
+            aria-busy="false"
+          ></div>
+        </section>
+      </section>
+    </main>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="js/navbar.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <script src="js/search.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const input = document.getElementById("searchInput");
+
+        const clearButton = document.getElementById("clearSearch");
+
+        const grid = document.getElementById("searchGrid");
+
+        if (!input || !clearButton) {
+          return;
+        }
+
+        clearButton.addEventListener("click", function () {
+          input.value = "";
+
+          input.focus();
+
+          if (grid) {
+            grid.innerHTML = "";
+          }
+        });
+      });
+    </script>
+      <script src="js/ads.js"></script>
+  </body>
+</html>

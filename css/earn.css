@@ -1,0 +1,241 @@
+/* ULMFlix Monetization Dashboard */
+
+.earn-page {
+    padding-top: 105px;
+    padding-bottom: 70px;
+}
+
+.earn-hero {
+    padding: 30px;
+    margin-bottom: 24px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(229,9,20,.18), rgba(255,255,255,.04));
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.earn-hero h1 {
+    margin: 0 0 8px;
+}
+
+.earn-hero p {
+    max-width: 720px;
+    line-height: 1.6;
+}
+
+.earn-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    margin-top: 10px;
+    border-radius: 999px;
+    background: rgba(0,180,90,.14);
+    color: #6ff0a8;
+    font-size: 14px;
+}
+
+.earn-status.off {
+    background: rgba(255,180,0,.12);
+    color: #ffd36a;
+}
+
+.earn-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.earn-stat {
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.earn-stat span {
+    display: block;
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.earn-stat strong {
+    font-size: 26px;
+}
+
+.earn-section-title {
+    margin: 32px 0 16px;
+}
+
+.earn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.earn-card {
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.earn-card h3 {
+    margin: 0 0 8px;
+}
+
+.earn-card p {
+    line-height: 1.55;
+    color: #aaa;
+}
+
+.earn-card .price {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 18px 0;
+}
+
+.earn-card .price small {
+    font-size: 13px;
+    color: #999;
+    font-weight: 400;
+}
+
+.earn-card.premium {
+    border-color: rgba(229,9,20,.45);
+    box-shadow: 0 12px 40px rgba(229,9,20,.08);
+}
+
+.earn-badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #e50914;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.earn-feature-list {
+    padding: 0;
+    margin: 18px 0;
+    list-style: none;
+}
+
+.earn-feature-list li {
+    padding: 7px 0;
+    color: #ccc;
+}
+
+.earn-feature-list li::before {
+    content: "✓";
+    margin-right: 8px;
+    color: #6ff0a8;
+}
+
+.earn-method {
+    min-height: 220px;
+}
+
+.earn-method-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.earn-method .method-status {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #6ff0a8;
+}
+
+.earn-method.disabled .method-status {
+    color: #ffd36a;
+}
+
+.earn-form {
+    display: grid;
+    gap: 14px;
+}
+
+.earn-form label {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.earn-form input,
+.earn-form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 9px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.2);
+    color: inherit;
+}
+
+.earn-message {
+    display: none;
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: rgba(0,180,90,.14);
+    color: #6ff0a8;
+}
+
+.premium-lock {
+    position: relative;
+    padding: 28px;
+    border-radius: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(229,9,20,.12), rgba(255,255,255,.03));
+    border: 1px solid rgba(229,9,20,.25);
+}
+
+.premium-lock h3 {
+    margin-top: 0;
+}
+
+.premium-lock .lock-icon {
+    font-size: 38px;
+}
+
+.revenue-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.revenue-table th,
+.revenue-table td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.revenue-table th {
+    color: #aaa;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .earn-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .earn-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .earn-stats,
+    .earn-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .earn-hero {
+        padding: 22px;
+    }
+}

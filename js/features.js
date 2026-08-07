@@ -1,0 +1,18 @@
+(function(){
+const KEY='sf_profiles_v1', PREF='sf_profile_prefs_v1', HIST='sf_history_v1';
+const avatars=['M','A','K','S','N'];
+let profiles=JSON.parse(localStorage.getItem(KEY)||'null')||[{id:'p1',name:'Main Profile',kids:false,pin:'',avatar:'M'},{id:'p2',name:'Kids',kids:true,pin:'',avatar:'K'}];
+let active=localStorage.getItem('sf_active_profile')||profiles[0].id;
+const $=s=>document.querySelector(s); const save=()=>localStorage.setItem(KEY,JSON.stringify(profiles));
+function render(){const box=$('#profileCards');box.innerHTML=profiles.map((p,i)=>`<div class="profile-card ${p.id===active?'active':''}" data-id="${p.id}"><div class="avatar-xl">${p.avatar||avatars[i%avatars.length]}</div><strong>${p.name}</strong><small>${p.kids?'Kids profile':'Standard profile'}${p.pin?' • 🔒':''}</small></div>`).join('');box.querySelectorAll('.profile-card').forEach(c=>c.onclick=()=>{active=c.dataset.id;localStorage.setItem('sf_active_profile',active);load();render();});$('#addProfile').disabled=profiles.length>=5;}
+function load(){const p=profiles.find(x=>x.id===active)||profiles[0]; if(!p)return; const prefs=JSON.parse(localStorage.getItem(PREF+'_'+p.id)||'{}');$('#pinInput').value=p.pin||'';$('#kidsToggle').checked=!!p.kids;$('#maturity').value=prefs.maturity||'All Ages';$('#autoplay').checked=prefs.autoplay!==false;$('#language').value=prefs.language||'English';$('#audio').value=prefs.audio||'English';$('#subtitle').value=prefs.subtitle||'English';$('#pinStatus').textContent=p.pin?'PIN is enabled for '+p.name:'No PIN set'; renderBlocked(prefs.blocked||[]); renderHistory();}
+function renderBlocked(items){$('#blockedList').innerHTML=items.length?items.map(x=>`<span class="blocked-item">${x}</span>`).join(''):'<span class="hint">No blocked titles.</span>';}
+function renderHistory(){let h=JSON.parse(localStorage.getItem(HIST)||'[]').filter(x=>!x.profileId||x.profileId===active);$('#historyList').innerHTML=h.length?h.slice(0,20).map(x=>`<div class="history-item"><strong>${x.title||'Untitled'}</strong><span>${x.progress?Math.round(x.progress)+'% • ':''}${x.date||'Recently watched'}</span></div>`).join(''):'<p class="hint">No viewing activity yet. Start watching a title to build your history.</p>';}
+$('#addProfile').onclick=()=>{if(profiles.length>=5)return alert('A ULMFlix account can have up to 5 profiles.');const name=prompt('Profile name?');if(!name)return;profiles.push({id:'p'+Date.now(),name:name.trim(),kids:false,pin:'',avatar:avatars[profiles.length%avatars.length]});save();render();};
+$('#savePin').onclick=()=>{let p=profiles.find(x=>x.id===active);let pin=$('#pinInput').value.trim();if(pin&&!/^\d{4}$/.test(pin))return alert('PIN must be exactly 4 digits.');p.pin=pin;save();load();};
+$('#saveControls').onclick=()=>{let p=profiles.find(x=>x.id===active);p.kids=$('#kidsToggle').checked;let prefs=JSON.parse(localStorage.getItem(PREF+'_'+p.id)||'{}');prefs.maturity=$('#maturity').value;prefs.autoplay=$('#autoplay').checked;localStorage.setItem(PREF+'_'+p.id,JSON.stringify(prefs));save();load();};
+$('#savePrefs').onclick=()=>{let prefs=JSON.parse(localStorage.getItem(PREF+'_'+active)||'{}');prefs.language=$('#language').value;prefs.audio=$('#audio').value;prefs.subtitle=$('#subtitle').value;localStorage.setItem(PREF+'_'+active,JSON.stringify(prefs));alert('Preferences saved.');};
+$('#resetBlocked').onclick=()=>{let prefs=JSON.parse(localStorage.getItem(PREF+'_'+active)||'{}');prefs.blocked=[];localStorage.setItem(PREF+'_'+active,JSON.stringify(prefs));load();};
+$('#clearHistory').onclick=()=>{let h=JSON.parse(localStorage.getItem(HIST)||'[]').filter(x=>x.profileId!==active);localStorage.setItem(HIST,JSON.stringify(h));renderHistory();};
+load();
+})();

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Manage Movies - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body>
+    <nav class="admin-nav">
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open admin navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <a href="index.html" class="logo"><span>ULMFLIX</span> ADMIN</a>
+      <div class="nav-right">
+        <a href="../index.html" class="btn btn-dark">↗ View Website</a>
+      </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="side-title">Main</div>
+
+      <a href="index.html" class="side-link"> Dashboard </a>
+
+      <a href="movies.html" class="side-link active"> 🎬 Manage Movies </a>
+
+      <a href="users.html" class="side-link"> 👥 Users </a>
+
+      <a href="settings.html" class="side-link"> ⚙ Settings </a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Manage Movies</h1>
+
+          <p>Add, edit, search and delete your movie records.</p>
+        </div>
+
+        <button class="btn btn-red" id="addMovie">+ Add New Movie</button>
+      </div>
+
+      <section class="panel">
+        <div class="searchbar">
+          <input
+            type="text"
+            id="movieSearch"
+            class="input"
+            placeholder="Search movie..."
+          />
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Poster</th>
+
+                <th>Movie</th>
+
+                <th>Genre</th>
+
+                <th>Status</th>
+
+                <th>Video</th>
+
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="movieRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="movieModal">
+      <div class="modal-box">
+        <div class="modal-head">
+          <h2 id="modalTitle">Add New Movie</h2>
+
+          <button class="close" onclick="closeMovieForm()">×</button>
+        </div>
+
+        <form id="movieForm">
+          <input type="hidden" id="movieId" />
+
+          <div class="form-grid">
+            <div class="field">
+              <label> Movie Title * </label>
+
+              <input class="input" id="title" required />
+            </div>
+
+            <div class="field">
+              <label> Release Year </label>
+
+              <input class="input" id="year" type="number" />
+            </div>
+
+            <div class="field">
+              <label> Genre </label>
+
+              <input class="input" id="genre" placeholder="Action, Drama" />
+            </div>
+
+            <div class="field">
+              <label><input type="checkbox" id="isPremium" /> Premium / VIP Content</label>
+            </div>
+
+            <div class="field">
+              <label> Status </label>
+
+              <select class="select" id="status">
+                <option>Published</option>
+
+                <option>Draft</option>
+
+                <option>Hidden</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label> Poster Image URL </label>
+
+              <input class="input" id="poster" placeholder="https://..." />
+              <input class="input" id="posterFile" type="file" accept="image/jpeg,image/png,image/webp" />
+            </div>
+
+            <div class="field">
+              <label> YouTube Trailer URL </label>
+
+              <input
+                class="input"
+                id="trailer"
+                placeholder="https://youtube.com/..."
+              />
+            </div>
+
+            <div class="field">
+              <label> Legal Video URL </label>
+
+              <input class="input" id="video" placeholder="https://example.com/movie.mp4" />
+              <input class="input" id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg" />
+            </div>
+
+            <div class="field full">
+              <label> Description </label>
+
+              <textarea class="textarea" id="description"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-red">Save Movie</button>
+
+            <button type="button" class="btn btn-dark" id="cancelMovie">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

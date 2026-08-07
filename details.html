@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://ulmflix.vercel.app/details.html" />
+    <title>Movie Details - ULMFlix</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <nav class="nav scrolled" data-site-nav></nav>
+    <div class="ad-wrap" data-ad-slot="1234567890"></div>
+    <main class="container details-page">
+      <div class="detail-shell">
+        <div class="detail-cover" id="detailCover"></div>
+        <div class="detail-info">
+          <h1 id="detailTitle">Loading…</h1>
+          <div class="detail-meta" id="detailMeta"></div>
+          <p class="detail-overview" id="detailText">Loading movie details…</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-red" id="detailSave" type="button">♡ Add to Watchlist</button>
+            <button class="btn btn-dark" id="detailLater" type="button">＋ Watch Later</button>
+          </div>
+          <div class="video" id="trailer">
+            <div class="status">Loading trailer…</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/library.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/details.js"></script>
+      <script src="js/ads.js"></script>
+  <script src="js/analytics.js"></script></body>
+</html>

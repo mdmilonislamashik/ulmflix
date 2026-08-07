@@ -1,0 +1,1 @@
+module.exports = async (req,res)=>{const status=String(req.query?.status||'unknown');const target=process.env.APP_URL||req.headers.origin||'';const suffix=status==='success'?'payment=success':status==='cancelled'?'payment=cancelled':'payment=failed';res.writeHead(302,{Location:`${target}/dashboard.html?${suffix}`});res.end();};

@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Content System • ULMFlix Admin</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <style>
+      .tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .tab {
+        border: 1px solid #34373d;
+        background: #17191c;
+        color: #aaa;
+        border-radius: 8px;
+        padding: 9px 12px;
+      }
+      .tab.active {
+        background: #e50914;
+        color: #fff;
+        border-color: #e50914;
+      }
+      .record-form {
+        display: grid;
+        grid-template-columns: 2fr 1fr auto;
+        gap: 9px;
+        margin-bottom: 15px;
+      }
+      .records {
+        display: grid;
+        gap: 8px;
+      }
+      .record {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        background: #15171a;
+        border: 1px solid #292c32;
+        border-radius: 9px;
+      }
+      .record small {
+        color: #777;
+      }
+      .danger {
+        color: #ff777e;
+        background: none;
+        border: 0;
+      }
+      @media (max-width: 650px) {
+        .record-form {
+          grid-template-columns: 1fr;
+        }
+        .record {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-nav">
+      <button class="menu-btn" id="menuBtn">☰</button
+      ><a href="index.html" class="logo"><span>ULMFLIX</span> ADMIN</a>
+      <div class="nav-right">
+        <a href="../index.html" class="btn btn-dark">↗ View Website</a>
+      </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+      <div class="side-title">Overview</div>
+      <a class="side-link" href="index.html">▦ <span>Dashboard</span></a>
+      <div class="side-title">Content</div>
+      <a class="side-link active" href="content.html"
+        >🎬 <span>Content System</span></a
+      ><a class="side-link" href="movies.html"
+        >＋ <span>Movies Management</span></a
+      ><a class="side-link" href="modules.html">◈ <span>All Modules</span></a>
+      <div class="side-title">Management</div>
+      <a class="side-link" href="users.html">👥 <span>User Management</span></a
+      ><a class="side-link" href="settings.html">⚙ <span>Settings</span></a>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="admin-kicker">Catalog Studio</div>
+          <h1>Content System</h1>
+          <p>
+            Manage series structure, discovery labels and homepage
+            merchandising.
+          </p>
+        </div>
+      </div>
+      <section class="panel">
+        <div class="tabs" id="tabs"></div>
+        <form class="record-form" id="form">
+          <input
+            class="input"
+            id="name"
+            placeholder="Name / title"
+            required
+          /><input
+            class="input"
+            id="meta"
+            placeholder="Metadata / description"
+          /><button class="btn btn-red">Add</button>
+        </form>
+        <div class="records" id="records"></div>
+      </section>
+    </main>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+      (function () {
+        const sets = {
+          series: "Series",
+          seasons: "Seasons",
+          episodes: "Episodes",
+          genres: "Genres",
+          subscriptions: "Subscriptions",
+          payments: "Payments",
+          history: "Watch History",
+          analytics: "Reports & Analytics",
+          banners: "Banners",
+          featured: "Featured Content",
+          trending: "Trending Content",
+          notifications: "Notifications",
+        };
+        let key = location.hash.slice(1) || "series";
+        const tabs = document.getElementById("tabs"),
+          form = document.getElementById("form"),
+          records = document.getElementById("records");
+        function data() {
+          return JSON.parse(localStorage.getItem("sf_admin_" + key) || "[]");
+        }
+        function save(a) {
+          localStorage.setItem("sf_admin_" + key, JSON.stringify(a));
+        }
+        function render() {
+          tabs.innerHTML = Object.entries(sets)
+            .map(
+              ([k, v]) =>
+                `<button type="button" class="tab ${k === key ? "active" : ""}" data-k="${k}">${v}</button>`,
+            )
+            .join("");
+          records.innerHTML =
+            data()
+              .map(
+                (x, i) =>
+                  `<div class="record"><div><b>${x.name}</b><small>${x.meta || "No metadata"}</small></div><button class="danger" data-i="${i}">Delete</button></div>`,
+              )
+              .join("") || '<div class="status">No records yet.</div>';
+          tabs.querySelectorAll(".tab").forEach(
+            (b) =>
+              (b.onclick = () => {
+                key = b.dataset.k;
+                history.replaceState(null, "", "#" + key);
+                render();
+              }),
+          );
+          records.querySelectorAll("[data-i]").forEach(
+            (b) =>
+              (b.onclick = () => {
+                const a = data();
+                a.splice(+b.dataset.i, 1);
+                save(a);
+                render();
+              }),
+          );
+        }
+        form.onsubmit = (e) => {
+          e.preventDefault();
+          const a = data();
+          a.unshift({
+            name: document.getElementById("name").value.trim(),
+            meta: document.getElementById("meta").value.trim(),
+            created: new Date().toISOString(),
+          });
+          save(a);
+          form.reset();
+          render();
+        };
+        render();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Users - ULMFlix</title>
+
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body>
+    <nav class="admin-nav">
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open admin navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <a href="index.html" class="logo"><span>ULMFLIX</span> ADMIN</a>
+      <div class="nav-right">
+        <a href="../index.html" class="btn btn-dark">↗ View Website</a>
+      </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="side-title">Overview</div>
+      <a href="index.html" class="side-link">▦ <span>Dashboard</span></a>
+      <div class="side-title">Content</div>
+      <a href="content.html" class="side-link"
+        >🧩 <span>Content System</span></a
+      >
+      <a href="series.html" class="side-link">📺 <span>Series Management</span></a>
+      <a href="movies.html" class="side-link">🎬 <span>Manage Movies</span></a>
+      <div class="side-title">Content System</div>
+      <a href="modules.html" class="side-link"
+        >◈ <span>All Admin Modules</span></a
+      >
+      <div class="side-title">Management</div>
+      <a href="users.html" class="side-link active">👥 <span>Users</span></a>
+      <a href="settings.html" class="side-link">⚙ <span>Settings</span></a>
+      <div class="side-title">Website</div>
+      <a href="../index.html" class="side-link">↗ <span>View Website</span></a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Users</h1>
+
+          <p>Manage registered users.</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Email</th>
+
+                <th>Role</th>
+
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="userRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Important</h2>
+
+        <p class="note">
+          This demo stores user information locally in the browser. For a real
+          website, use secure authentication and a database.
+        </p>
+      </section>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

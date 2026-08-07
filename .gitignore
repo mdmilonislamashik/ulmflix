@@ -1,0 +1,9 @@
+.vercel
+.env
+node_modules/
+supabase/.temp/
+.env.local
+.env.production
+
+.vercel
+.env*
