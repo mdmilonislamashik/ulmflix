@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Application Form | ULMFlix</title>
+
+<link rel="stylesheet" href="./css/application.css">
+
+<script src="./js/config.js"></script>
+<script src="./js/supabase-client.js"></script>
+
+</head>
+
+<body>
+
+<div class="application-container">
+
+<h1>Application Form</h1>
+
+<form id="applicationForm">
+
+<section>
+<h2>Personal Information</h2>
+
+<input id="fullName" type="text" placeholder="Full Name" required>
+
+<input id="email" type="email" placeholder="Email Address" required>
+
+<input id="phone" type="text" placeholder="Phone Number" required>
+
+<input id="dob" type="date">
+
+<input id="country" type="text" placeholder="Country">
+
+<textarea id="address" placeholder="Full Address"></textarea>
+
+</section>
+
+
+<section>
+
+<h2>Application Details</h2>
+
+<select id="applicationType" required>
+<option value="">Select Application Type</option>
+<option>Premium Membership</option>
+<option>Creator Application</option>
+<option>Partner Application</option>
+<option>Other Service</option>
+</select>
+
+
+<input id="purpose" type="text" placeholder="Purpose">
+
+
+<textarea id="description"
+placeholder="Describe your application"></textarea>
+
+
+<input id="document"
+type="file">
+
+
+<textarea id="notes"
+placeholder="Additional Notes"></textarea>
+
+
+</section>
+
+
+<section>
+
+<h2>Payment Information</h2>
+
+
+<select id="paymentMethod" required>
+
+<option value="">
+Select Payment Method
+</option>
+
+<option value="bkash">
+bKash
+</option>
+
+<option value="nagad">
+Nagad
+</option>
+
+<option value="rocket">
+Rocket
+</option>
+
+</select>
+
+
+<input id="paymentNumber"
+placeholder="Sender Number">
+
+
+<input id="transactionId"
+placeholder="Transaction ID">
+
+
+<input id="amount"
+type="number"
+placeholder="Payment Amount">
+
+
+</section>
+
+
+<button type="submit">
+Submit Application
+</button>
+
+
+<p id="message"></p>
+
+
+</form>
+
+</div>
+
+
+<script src="./js/application.js"></script>
+
+</body>
+</html>
