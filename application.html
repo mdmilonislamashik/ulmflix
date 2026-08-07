@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="./css/application.css">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./js/config.js"></script>
 <script src="./js/supabase-client.js"></script>
 
@@ -25,19 +26,13 @@
 <h2>Personal Information</h2>
 
 <input id="fullName" type="text" placeholder="Full Name" required>
-
 <input id="email" type="email" placeholder="Email Address" required>
-
 <input id="phone" type="text" placeholder="Phone Number" required>
-
 <input id="dob" type="date">
-
 <input id="country" type="text" placeholder="Country">
-
 <textarea id="address" placeholder="Full Address"></textarea>
 
 </section>
-
 
 <section>
 
@@ -45,85 +40,48 @@
 
 <select id="applicationType" required>
 <option value="">Select Application Type</option>
-<option>Premium Membership</option>
-<option>Creator Application</option>
-<option>Partner Application</option>
-<option>Other Service</option>
+<option value="Premium Membership">Premium Membership</option>
+<option value="Creator Application">Creator Application</option>
+<option value="Partner Application">Partner Application</option>
+<option value="Other Service">Other Service</option>
 </select>
-
 
 <input id="purpose" type="text" placeholder="Purpose">
 
+<textarea id="description" placeholder="Describe your application"></textarea>
 
-<textarea id="description"
-placeholder="Describe your application"></textarea>
+<input id="document" type="file">
 
-
-<input id="document"
-type="file">
-
-
-<textarea id="notes"
-placeholder="Additional Notes"></textarea>
-
+<textarea id="notes" placeholder="Additional Notes"></textarea>
 
 </section>
-
 
 <section>
 
 <h2>Payment Information</h2>
 
-
 <select id="paymentMethod" required>
-
-<option value="">
-Select Payment Method
-</option>
-
-<option value="bkash">
-bKash
-</option>
-
-<option value="nagad">
-Nagad
-</option>
-
-<option value="rocket">
-Rocket
-</option>
-
+<option value="">Select Payment Method</option>
+<option value="bkash">bKash</option>
+<option value="nagad">Nagad</option>
+<option value="rocket">Rocket</option>
 </select>
 
+<input id="paymentNumber" type="text" placeholder="Sender Number">
 
-<input id="paymentNumber"
-placeholder="Sender Number">
+<input id="transactionId" type="text" placeholder="Transaction ID">
 
-
-<input id="transactionId"
-placeholder="Transaction ID">
-
-
-<input id="amount"
-type="number"
-placeholder="Payment Amount">
-
+<input id="amount" type="number" placeholder="Payment Amount">
 
 </section>
 
-
-<button type="submit">
-Submit Application
-</button>
-
+<button type="submit">Submit Application</button>
 
 <p id="message"></p>
-
 
 </form>
 
 </div>
-
 
 <script src="./js/application.js"></script>
 
